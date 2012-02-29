@@ -3,7 +3,7 @@
 
 #git colors
 GIT_THEME_PROMPT_DIRTY=" ${white}!"
-GIT_THEME_PROMPT_CLEAN=""
+GIT_THEME_PROMPT_CLEAN=" ${white}•"
 GIT_THEME_PROMPT_PREFIX=" ${green}["
 GIT_THEME_PROMPT_SUFFIX="${green}]"
 
