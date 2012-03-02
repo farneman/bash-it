@@ -36,10 +36,8 @@ unset MAILCHECK
 
 ###################################################
 
-# MacPorts Installer addition on 2011-03-28_at_12:00:51: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
+# MacPorts: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin:$PATH
 
 # Setting PATH for Python 2.7
 export PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
