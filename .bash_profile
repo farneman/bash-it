@@ -46,15 +46,5 @@ export TODO="t"
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
 
-# Force intereactive prompts
-alias cp='cp -i'
-alias rm='rm -i'
-alias mv='mv -i'
-
-# program aliases
-alias photoshop="open -a '/Applications/Adobe Photoshop CS4/Adobe Photoshop CS4.app'"
-alias illustrator="open -a '/Applications/Adobe Illustrator CS4/Adobe Illustrator CS4.app'"
-alias acrobat="open -a '/Applications/Adobe Acrobat 9 Pro/Adobe Acrobat Pro.app'"
-
 # Load Bash It
 source $BASH_IT/bash_it.sh
