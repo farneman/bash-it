@@ -36,16 +36,10 @@ unset MAILCHECK
 
 ###################################################
 
-# MacPorts Installer addition on 2011-03-28_at_12:00:51: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+# Include MacPorts and Python 2.7
+export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin:$PATH
 
-
-# Setting PATH for Python 2.7
-export PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-
-# Put OpenOffice in PATH
-export PATH=/Applications/OOo-dev.app/Contents/MacOS/soffice.bin:$PATH
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 
 # Bash
 BASH=/bin/bash
