@@ -25,6 +25,7 @@ export GIT_HOSTING='farneman@github.com'
 # Set my editor and git editor
 export EDITOR="/usr/local/bin/mvim"
 export GIT_EDITOR='/usr/local/bin/mvim'
+export VIM_APP_DIR="/Applications/MacPorts"
 
 # MacPorts: set DISPLAY variable
 export DISPLAY=:0
