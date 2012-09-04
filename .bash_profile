@@ -8,6 +8,7 @@ export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/u
 
 # Load RVM, if you are using it
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+rvm use default
 
 # Add Python 2.7 to the path
 export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
