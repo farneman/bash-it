@@ -13,6 +13,8 @@ rvm use default
 # Add Python 2.7 to the path
 export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
 
+export NODE_PATH=$HOME/.node_modules
+
 # Path to the bash it configuration
 export BASH_IT=$HOME/.bash_it
 
