@@ -6,6 +6,11 @@
 
 Includes autocompletion, themes, aliases, custom functions, a few stolen pieces from Steve Losh, and more.
 
+## Customizations
+* Added Macports to `.bash_profile`
+* Custom farneman theme
+* Custom aliases
+
 ## Install
 
 1. Check a clone of this repo: `git clone http://github.com/revans/bash-it.git ~/.bash_it`
