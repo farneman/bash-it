@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
 # Add MacPorts to the path
-export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/usr/bin:/bin:/
+export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/usr/bin:/usr/sbin:/bin:/sbin:/
+
+# Add Python 2.7 to the path
+export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
 
 # Load RVM, and select its default
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-rvm use default
+# [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+# rvm use default
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # Add rvm gems and nginx to the path
-export PATH=$PATH:~/.gem/ruby/1.8/bin:/opt/nginx/sbin
+# export PATH=$PATH:~/.gem/ruby/1.8/bin:/opt/nginx/sbin
 
 # Path to Node modules
 export NODE_PATH=$HOME/.node_modules
