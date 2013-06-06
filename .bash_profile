@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
 
-# Add MacPorts to the path
-export PATH=/usr/local/bin/:/usr/local/sbin/:/opt/local/bin/:/opt/local/sbin/:/usr/bin:/usr/sbin:/bin:/sbin:/
+# Add Homebrew to the path
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
-# Add Python 2.7 to the path
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
-
-# Load RVM, and select its default
-# [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-# rvm use default
-# rbenv
+# Add rbenv to the path
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Add rvm gems and nginx to the path
-# export PATH=$PATH:~/.gem/ruby/1.8/bin:/opt/nginx/sbin
+# Add Pip Packages to path
+export PATH="$PATH:/usr/local/share/python"
 
-# Path to Node modules
-export NODE_PATH=$HOME/.node_modules
+# Add NPM to path
+export PATH="$PATH:/usr/local/share/npm/bin"
+
+# Make PHP available on commandline
+export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Create HOMEBREW_PREFIX var
+export HOMEBREW_PREFIX="/usr/local"
 
 # Path to the bash it configuration
 export BASH_IT=$HOME/.bash_it
@@ -30,25 +33,15 @@ export BASH_IT_THEME='farneman'
 export GIT_HOSTING='farneman@github.com'
 
 # Set my editor and git editor
-export EDITOR="/usr/local/bin/mvim"
-export GIT_EDITOR='/usr/local/bin/mvim'
-export VIM_APP_DIR="/Applications/MacPorts"
-
-# MacPorts: set DISPLAY variable
-export DISPLAY=:0
-
-# Set the path nginx
-export NGINX_PATH='/opt/nginx'
+export EDITOR="/usr/local/bin/vim"
+export GIT_EDITOR='/usr/local/bin/vim'
+export VIM_APP_DIR="/usr/local/bin/"
 
 # Don't check mail when opening terminal.
 unset MAILCHECK
 
-
 # Change this to your console based IRC client of choice.
 export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-export TODO="t"
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
