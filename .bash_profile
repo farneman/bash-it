@@ -10,6 +10,9 @@ export HOMEBREW_PREFIX="/usr/local"
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# Add tuxinator to path
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
 # Add NPM to path
 export PATH="$PATH:/usr/local/share/npm/bin"
 
