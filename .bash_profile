@@ -38,7 +38,9 @@ export VIM_APP_DIR="/usr/local/bin/"
 # Don't check mail when opening terminal.
 unset MAILCHECK
 
+
 # Change this to your console based IRC client of choice.
+
 export IRC_CLIENT='irssi'
 
 # Load Bash It
