@@ -15,6 +15,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Add NPM to path
 export PATH="$PATH:/usr/local/share/npm/bin"
+# Enable NPM completion
+if npm -v >/dev/null 2>&1; then
+  . <(npm completion)
+fi
 
 # Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -38,17 +42,14 @@ export EDITOR="/usr/local/bin/vim"
 export GIT_EDITOR="/usr/local/bin/vim"
 export VIM_APP_DIR="/usr/local/bin/"
 
+# Change this to your console based IRC client of choice.
+export IRC_CLIENT='irssi'
+
 # Don't check mail when opening terminal.
 unset MAILCHECK
-
-
-# Change this to your console based IRC client of choice.
-
-export IRC_CLIENT='irssi'
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
 
 # Use vim commands in Bash!
 set -o vi
-
