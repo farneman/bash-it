@@ -2,7 +2,14 @@
 # Initialize Bash It
 
 # Reload Library
-alias reload='source ~/.bash_profile'
+case $OSTYPE in
+  darwin*)
+    alias reload='source ~/.bash_profile'
+    ;;
+  *)
+    alias reload='source ~/.bashrc'
+    ;;
+esac
 
 # Only set $BASH_IT if it's not already set
 if [ -z "$BASH_IT" ];
@@ -10,7 +17,7 @@ then
     # Setting $BASH to maintain backwards compatibility
     # TODO: warn users that they should upgrade their .bash_profile
     export BASH_IT=$BASH
-    export BASH=`bash -c 'echo $BASH'`
+    export BASH="$(bash -c 'echo $BASH')"
 fi
 
 # For backwards compatibility, look in old BASH_THEME location
@@ -22,56 +29,88 @@ then
 fi
 
 # Load composure first, so we support function metadata
-source "${BASH_IT}/lib/composure.sh"
+# shellcheck source=./lib/composure.bash
+source "${BASH_IT}/lib/composure.bash"
 
 # support 'plumbing' metadata
 cite _about _param _example _group _author _version
 
-# Load colors first so they can be use in base theme
-source "${BASH_IT}/themes/colors.theme.bash"
-source "${BASH_IT}/themes/base.theme.bash"
-
-# library
+# libraries, but skip appearance (themes) for now
 LIB="${BASH_IT}/lib/*.bash"
+APPEARANCE_LIB="${BASH_IT}/lib/appearance.bash"
 for config_file in $LIB
 do
-  source $config_file
+  if [ $config_file != $APPEARANCE_LIB ]; then
+    # shellcheck disable=SC1090
+    source $config_file
+  fi
 done
 
+# Load the global "enabled" directory
+_load_global_bash_it_files
+
 # Load enabled aliases, completion, plugins
-for file_type in "aliases" "completion" "plugins"
+for file_type in "aliases" "plugins" "completion"
 do
   _load_bash_it_files $file_type
 done
 
-# Load any custom aliases that the user has added
-if [ -e "${BASH_IT}/aliases/custom.aliases.bash" ]
-then
-  source "${BASH_IT}/aliases/custom.aliases.bash"
-fi
+# Load colors and helpers first so they can be used in base theme
+# shellcheck source=./themes/colors.theme.bash
+source "${BASH_IT}/themes/colors.theme.bash"
+# shellcheck source=./themes/githelpers.theme.bash
+source "${BASH_IT}/themes/githelpers.theme.bash"
+# shellcheck source=./themes/p4helpers.theme.bash
+source "${BASH_IT}/themes/p4helpers.theme.bash"
+# shellcheck source=./themes/base.theme.bash
+source "${BASH_IT}/themes/base.theme.bash"
+
+# appearance (themes) now, after all dependencies
+# shellcheck source=./lib/appearance.bash
+source $APPEARANCE_LIB
+
+# Load custom aliases, completion, plugins
+for file_type in "aliases" "completion" "plugins"
+do
+  if [ -e "${BASH_IT}/${file_type}/custom.${file_type}.bash" ]
+  then
+    # shellcheck disable=SC1090
+    source "${BASH_IT}/${file_type}/custom.${file_type}.bash"
+  fi
+done
 
 # Custom
-CUSTOM="${BASH_IT}/custom/*.bash"
+CUSTOM="${BASH_IT_CUSTOM:=${BASH_IT}/custom}/*.bash ${BASH_IT_CUSTOM:=${BASH_IT}/custom}/**/*.bash"
 for config_file in $CUSTOM
 do
   if [ -e "${config_file}" ]; then
+    # shellcheck disable=SC1090
     source $config_file
   fi
 done
 
 unset config_file
 if [[ $PROMPT ]]; then
-    export PS1=$PROMPT
+    export PS1="\[""$PROMPT""\]"
 fi
 
 # Adding Support for other OSes
 PREVIEW="less"
-[ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview"
-[ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app"
+
+if [ -s /usr/bin/gloobus-preview ]; then
+  PREVIEW="gloobus-preview"
+elif [ -s /Applications/Preview.app ]; then
+  # shellcheck disable=SC2034
+  PREVIEW="/Applications/Preview.app"
+fi
 
 # Load all the Jekyll stuff
 
-if [ -e $HOME/.jekyllconfig ]
+if [ -e "$HOME/.jekyllconfig" ]
 then
-  . $HOME/.jekyllconfig
+  # shellcheck disable=SC1090
+  . "$HOME/.jekyllconfig"
 fi
+
+# Disable trap DEBUG on subshells - https://github.com/Bash-it/bash-it/pull/1040
+set +T
